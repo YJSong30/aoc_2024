@@ -1,30 +1,30 @@
 const utils = require("../utils");
 
-// async function solution1() {
-//   const inputLines = await utils.openFile("./input.txt");
+function solution1() {
+  const inputLines = utils.openFile("./sample.txt");
 
-//   // need an array with all on left and all on right
-//   let left = [],
-//     right = [];
-//   inputLines.forEach((c) => {
-//     const [l, r] = c.split("   ");
-//     left.push(parseInt(l));
-//     right.push(parseInt(r));
-//   });
+  // need an array with all on left and all on right
+  let left = [],
+    right = [];
+  inputLines.forEach((c) => {
+    const [l, r] = c.split("   ");
+    left.push(parseInt(l));
+    right.push(parseInt(r));
+  });
 
-//   left.sort();
-//   right.sort();
+  left.sort();
+  right.sort();
 
-//   let total = 0;
-//   for (let i = 0; i < left.length; i++) {
-//     total += Math.abs(left[i] - right[i]);
-//   }
+  let total = 0;
+  for (let i = 0; i < left.length; i++) {
+    total += Math.abs(left[i] - right[i]);
+  }
 
-//   console.log(total);
-// }
+  console.log(total);
+}
 
-async function solution2() {
-  const inputLines = await utils.openFile("./input.txt");
+function solution2() {
+  const inputLines = utils.openFile("./input.txt");
   const frequency = {};
 
   // need an array with all on left and all on right
@@ -52,6 +52,6 @@ async function solution2() {
   console.log(total);
 }
 
-solution2();
+solution1();
 
-module.exports = solution;
+module.exports = solution1;
