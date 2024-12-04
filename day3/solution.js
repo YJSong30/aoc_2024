@@ -1,25 +1,25 @@
 const utils = require("../utils");
 
-// function solution1() {
-//   const inputLine = utils.openFile("./input.txt");
-//   const pattern = /mul\((\d+),(\d+)\)/g;
+function solution1() {
+  const inputLine = utils.openFile("./input.txt");
+  const pattern = /mul\((\d+),(\d+)\)/g;
 
-//   const matches = inputLine.matchAll(pattern);
+  const matches = inputLine.matchAll(pattern);
 
-//   let total = 0;
-//   for (const match of matches) {
-//     const num1 = Number(match[1]);
-//     const num2 = Number(match[2]);
+  let total = 0;
+  for (const match of matches) {
+    const num1 = Number(match[1]);
+    const num2 = Number(match[2]);
 
-//     total += num1 * num2;
-//   }
+    total += num1 * num2;
+  }
 
-//   console.log(total);
-// }
+  console.log(total);
+}
 
-// solution1();
+solution1();
 
-// module.exports = solution1;
+module.exports = solution1;
 
 function solution2() {
   const inputLine = utils.openFile("./input.txt");
