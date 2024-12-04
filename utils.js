@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-//day 2
+//day 3
 class Utils {
   constructor() {
     this.fs = fs;
@@ -9,7 +9,7 @@ class Utils {
   openFile(path) {
     try {
       const data = this.fs.readFileSync(path, "utf8");
-      return this.splitLines(data);
+      return data;
     } catch (err) {
       console.error(err);
     }
@@ -21,6 +21,28 @@ class Utils {
 }
 
 module.exports = new Utils();
+
+//day 2
+// class Utils {
+//   constructor() {
+//     this.fs = fs;
+//   }
+
+//   openFile(path) {
+//     try {
+//       const data = this.fs.readFileSync(path, "utf8");
+//       return this.splitLines(data);
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   }
+
+//   splitLines(data) {
+//     return data.split("\n").map((line) => line.trim());
+//   }
+// }
+
+// module.exports = new Utils();
 
 //day 1
 // class Utils {
