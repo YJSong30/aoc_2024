@@ -50,46 +50,86 @@ function solution1() {
   console.log(count);
 
   return count;
-
-  // const visited = new Set();
-  // function dfs(i, r, c, visited) {
-  //   if (
-  //     r < 0 ||
-  //     r >= rows ||
-  //     c < 0 ||
-  //     c >= cols ||
-  //     visited.has(`${r},${c}`) ||
-  //     grid[r][c] !== word[i]
-  //   ) {
-  //     return false;
-  //   }
-  //   if (i === word.length - 1) {
-  //     return true;
-  //   }
-  //   visited.add(`${r},${c}`);
-  //
-  //   for (const [dr, dc] of directions) {
-  //     if (dfs(i + 1, r + dr, c + dc, visited)) {
-  //       return true;
-  //     }
-  //   }
-  //   visited.delete(`${r},${c}`);
-  //   return false;
-  // }
-  // const word = "XMAS";
-  // for (let r = 0; r < rows; r++) {
-  //   for (let c = 0; c < cols; c++) {
-  //     if (grid[r][c] === word[0]) {
-  //       if (dfs(0, r, c, new Set())) {
-  //         // console.log(`${r},${c}`);
-  //         totalWords++;
-  //       }
-  //     }
-  //   }
-  // }
-  // console.log(totalWords - 1);
 }
 
-solution1();
+// const visited = new Set();
+// function dfs(i, r, c, visited) {
+//   if (
+//     r < 0 ||
+//     r >= rows ||
+//     c < 0 ||
+//     c >= cols ||
+//     visited.has(`${r},${c}`) ||
+//     grid[r][c] !== word[i]
+//   ) {
+//     return false;
+//   }
+//   if (i === word.length - 1) {
+//     return true;
+//   }
+//   visited.add(`${r},${c}`);
+//
+//   for (const [dr, dc] of directions) {
+//     if (dfs(i + 1, r + dr, c + dc, visited)) {
+//       return true;
+//     }
+//   }
+//   visited.delete(`${r},${c}`);
+//   return false;
+// }
+// const word = "XMAS";
+// for (let r = 0; r < rows; r++) {
+//   for (let c = 0; c < cols; c++) {
+//     if (grid[r][c] === word[0]) {
+//       if (dfs(0, r, c, new Set())) {
+//         // console.log(`${r},${c}`);
+//         totalWords++;
+//       }
+//     }
+//   }
+// }
+// console.log(totalWords - 1);
+// }
 
-module.exports = solution1;
+function solution2() {
+  const grid = utils.openFile("./input.txt");
+  const n = grid.length;
+  const m = grid[0].length;
+
+  // Helper function to check if a diagonal matches "MAS" or "SAM"
+  function matchesDiagonal(x, y, dx, dy) {
+    const diagonal = [];
+    for (let i = 0; i < 3; i++) {
+      const nx = x + dx * i;
+      const ny = y + dy * i;
+      if (nx < 0 || ny < 0 || nx >= n || ny >= m) return false; // Out of bounds
+      diagonal.push(grid[nx][ny]);
+    }
+    const str = diagonal.join("");
+    return str === "MAS" || str === "SAM";
+  }
+
+  let count = 0;
+
+  // Iterate through all possible centers of an X
+  for (let i = 1; i < n - 1; i++) {
+    // Exclude edges
+    for (let j = 1; j < m - 1; j++) {
+      // Exclude edges
+      // Check diagonals:
+      const topLeftToBottomRight = matchesDiagonal(i - 1, j - 1, 1, 1); // ↘
+      const bottomLeftToTopRight = matchesDiagonal(i + 1, j - 1, -1, 1); // ↗
+
+      // If both diagonals form an X-MAS, increment the count
+      if (topLeftToBottomRight && bottomLeftToTopRight) {
+        count++;
+      }
+    }
+  }
+
+  console.log(count);
+}
+
+solution2();
+
+module.exports = solution2;
